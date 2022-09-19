@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-md-3 mb-5 animate__animated animate__fadeIn" 
+         *ngFor="let movie of movies">
+        <!-- <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt=""
+             class="img-fluid poster"> -->
+        <!-- Con uso de un pipe -->
+        <img [src]="movie.poster_path | poster"
+             class="img-fluid poster" style="cursor: pointer"
+             (click)="onMovieClick(movie)">
+        <div>
+            <h3 class="ps-1">{{ movie.title }}</h3>
+            <div class="row">
+                <div class="col-10 text-white">
+                    <star-rating [starType]="'svg'" staticColor="ok" size="medium" space="around" speed="slow" [numOfStars]="10" [showHalfStars]="true" [rating]="movie.vote_average"></star-rating>
+                </div>
+                <div class="col-2 text-white">
+                    <h3>{{ movie. vote_average | number: '1.1-2'}}</h3>
+                     <!-- Entero y uno o dos decimales -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

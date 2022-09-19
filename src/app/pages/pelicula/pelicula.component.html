@@ -1,0 +1,39 @@
+
+<!-- Esto solo se va a mostrar si existe la película -->
+<div class="row" *ngIf="pelicula">
+    <div class="col-md-6">
+        <!-- Imagen -->
+        <img [src]="pelicula.poster_path | poster" [alt]="pelicula.title"
+             class="img-thumbnail">
+    </div>
+    <div class="col-md-6">
+        <!-- Detalle -->
+        <h3 class="ps-1">{{ pelicula.title }}</h3>
+        <div class="row">
+            <div class="col text-white">
+                <star-rating [starType]="'svg'" staticColor="ok" size="medium" space="around" speed="slow" [numOfStars]="10" [showHalfStars]="true" [rating]="pelicula.vote_average"></star-rating>
+            </div>
+            <div class="col text-white">
+                <h5>{{ pelicula.vote_average | number: '1.1-2' }}</h5>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col text-white">
+                {{ pelicula.overview }}
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col text-white">
+                <button class="btn btn-outline-info" (click)="onRegresar()">
+                    Regresar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4" *ngIf="cast.length > 0">
+    <div class="col">
+        <app-cast-slideshow [cast]="cast"></app-cast-slideshow>
+    </div>
+</div>
