@@ -15,6 +15,7 @@ export class PeliculaComponent implements OnInit {
 
   public pelicula!: MovieDetails;
   public cast: Cast[] = []; 
+  public loading!: boolean;
 
   constructor(private activatedRoute: ActivatedRoute,
               private peliculaService: PeliculasService,
@@ -27,6 +28,8 @@ export class PeliculaComponent implements OnInit {
     const { id } = this.activatedRoute.snapshot.params; 
 
     console.log(id);
+
+    this.loading = true; // Decimos que la data está cargando
 
     //#region Suscripción a Observables (Forma no optimizada)
     /*  
@@ -79,6 +82,8 @@ export class PeliculaComponent implements OnInit {
 
       // Manejamos la respuesta del observable que emite el cast de la movie
       this.cast = cast.filter(actor => actor.profile_path != null);
+
+      this.loading = false; // Decimos que la data ya cargó
     });
 
   }

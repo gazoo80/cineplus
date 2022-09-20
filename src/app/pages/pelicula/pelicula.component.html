@@ -1,4 +1,6 @@
 
+<app-loading *ngIf="loading"></app-loading>
+
 <!-- Esto solo se va a mostrar si existe la película -->
 <div class="row" *ngIf="pelicula">
     <div class="col-md-6">
@@ -31,6 +33,12 @@
         </div>
     </div>
 </div>
+<!-- Como se insertaria un video -->
+<!-- <div class="row mt-4" *ngIf="pelicula">
+    <div class="col-md-12 text-center">
+        <iframe width="600" height="400" src="https://www.youtube.com/embed/Tfz9AhPnM8c" title="An American Werewolf in London (1981) Trailer #1 | Movieclips Classic Trailers" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>   
+</div> -->
 
 <div class="row mt-4" *ngIf="cast.length > 0">
     <div class="col">

@@ -12,16 +12,20 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   public movies: Movie[] = [];
   public moviesSlideshow: Movie[] = [];
+  public loading!: boolean;
 
   constructor(private peliculasService: PeliculasService) { 
   }
  
   ngOnInit(): void {
+    this.loading = true; // Decimos que la data está cargando
+
     this.peliculasService.getCartelera().subscribe(
       movies => {
         console.log(movies);
         this.movies = movies;
         this.moviesSlideshow = movies;
+        this.loading = false; // Decimos que la data ya cargó
       } 
     );
   }

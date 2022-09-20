@@ -12,6 +12,7 @@ export class BuscarComponent implements OnInit {
 
   public texto: string = '';
   public movies: Movie[] = [];
+  public loading!: boolean;
 
   // ActivatedRoute: Para obtener los parámetros de ruta "buscar/{texto}""
   constructor(private activatedRoute: ActivatedRoute,
@@ -24,10 +25,13 @@ export class BuscarComponent implements OnInit {
 
       this.texto = params['texto'];
 
+      this.loading = true; // Decimos que la data está cargando
+
       this.peliculasService.buscarPeliculas(params['texto']).subscribe(
         movies => {
           console.log(movies);
-          this.movies = movies
+          this.movies = movies;
+          this.loading = false; // Decimos que la data ya cargó
         }
       );
     });

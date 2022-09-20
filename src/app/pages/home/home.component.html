@@ -1,15 +1,21 @@
 
-<h3>Cartelera </h3>
-<!-- Tiene que ser así condicionado para que después del constructor y el init, se vuelva a 
-    evaluar el valor de movies y se pinten los resultados -->
-<div class="row" *ngIf="movies.length > 0">
-    <div class="col">
-        <app-slideshow [movies]= "moviesSlideshow"></app-slideshow>
+
+<app-loading *ngIf="loading"></app-loading>
+
+<div *ngIf="movies.length > 0">
+    <h3>Cartelera </h3>
+
+    <!-- Tiene que ser así condicionado para que después del constructor y el init, se vuelva a 
+        evaluar el valor de movies y se pinten los resultados -->
+    <div class="row" *ngIf="movies.length > 0">
+        <div class="col">
+            <app-slideshow [movies]= "moviesSlideshow"></app-slideshow>
+        </div>
     </div>
+
+    <h3 class="mt-4">Películas </h3>
+
+    <!-- Tiene que ser así condicionado para que se pinten los resultados -->
+    <app-peliculas-poster-grid [movies]="movies" *ngIf="movies.length > 0">
+    </app-peliculas-poster-grid>
 </div>
-
-<h3 class="mt-4">Películas </h3>
-
-<!-- Tiene que ser así condicionado para que se pinten los resultados -->
-<app-peliculas-poster-grid [movies]="movies" *ngIf="movies.length > 0">
-</app-peliculas-poster-grid>
