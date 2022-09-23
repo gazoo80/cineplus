@@ -8,6 +8,8 @@ import { StarRatingModule } from "angular-star-rating";
 import { PipesModule } from '../pipes/pipes.module';
 import { CastSlideshowComponent } from './cast-slideshow/cast-slideshow.component';
 import { LoadingComponent } from './loading/loading.component';
+import { FooterComponent } from './footer/footer.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { LoadingComponent } from './loading/loading.component';
     SlideshowComponent,
     PeliculasPosterGridComponent,
     CastSlideshowComponent,
-    LoadingComponent
+    LoadingComponent,
+    FooterComponent,
+    SidebarComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +32,9 @@ import { LoadingComponent } from './loading/loading.component';
     SlideshowComponent,
     PeliculasPosterGridComponent,
     CastSlideshowComponent,
-    LoadingComponent
+    LoadingComponent,
+    FooterComponent,
+    SidebarComponent
   ]
 })
 export class ComponentsModule { }

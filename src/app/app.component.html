@@ -1,14 +1,18 @@
 <app-navbar></app-navbar>
 
-
-<div class="container mt-3">
-    <router-outlet></router-outlet>
+<div class="d-flex">
+    <div class="border-end border-dark border-4 p-3" id="sidebar">
+        <app-sidebar></app-sidebar>
+    </div>
+    <div class="container mt-3">
+        <div style="min-height: 80vh;"> <!-- Para que el footer aparezca en el bottom de la pantalla  -->
+            <router-outlet></router-outlet>
+        </div>
+        <app-footer></app-footer>
+    </div>
 </div>
 
-<div class="container mt-5">
-    <hr>
-    <p class="text-center">2022 © Copyright</p>
-</div>
+
 
 
 

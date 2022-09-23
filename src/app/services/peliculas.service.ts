@@ -14,6 +14,7 @@ export class PeliculasService {
   private baseUrl: string = 'https://api.themoviedb.org/3';
   private carteleraPage: number = 1;
   public cargando: boolean = false; // Para sabaer cuando estamos cargando info y no volver a hacerlo
+  private _historial: string[] = []; // Para ir almacenando los criterios de búsqueda
 
   constructor(private http: HttpClient) { }
 
@@ -56,6 +57,8 @@ export class PeliculasService {
 
   buscarPeliculas(texto: string): Observable<Movie[]>{
 
+    this.adminHistorial(texto);
+
     const params = { ...this.params, page: '1', query: texto };
 
     return this.http.get<CarteleraResponse>(`${this.baseUrl}/search/movie`, {
@@ -85,5 +88,42 @@ export class PeliculasService {
       // Si no se encuentra la pelicula por id. se retorna un areglo vacio para ek caso del cast
       catchError(error => of([]))
     );
+  }
+
+  private adminHistorial(texto: string = '') {
+
+    // Para hacer la evaluación solo en letras minusculas
+    texto = texto.trim().toLocaleLowerCase(); 
+
+    // Si no se encuentra ya el texto en el arreglo, lo agregamos
+    if (!this._historial.includes(texto)) {
+      // Almacenamos el criterio de búsqueda en el arreglo de historial
+      // Lo agregamso al inicio y no al final (push)
+      this._historial.unshift(texto);
+
+      // Cortamos el arreglo para mostrar solo los 10 más recientes criterios de búsqueda
+      this._historial = this._historial.splice(0, 10);
+
+      // Almacenamos el historial en localStorage para que no desaparezca cuando refrescamos
+      localStorage.setItem("historial", JSON.stringify(this._historial));
+    }
+    
+    console.log(this._historial);
+  }
+
+  getHistorial(): Observable<string[]> {
+
+    // Obtenemos el arreglo de localStorage donde lo guardamos y los asignaos al arreglo en la 
+    // aplicación
+    const arrayHistorial = localStorage.getItem("historial");
+
+    // Si lo obtenido del localStorage es difrente de null, lo parseamos hacia el arreglo
+    if (arrayHistorial !== null) {
+      this._historial = JSON.parse(arrayHistorial);
+    }
+    
+    // Para que no haya posibilidad de modificar el arreglo principal. Ya que los arreglos
+    // son objetos a los que se puede acceder por referencia
+    return of([...this._historial]);
   }
 }

@@ -1,0 +1,6 @@
+.footer {
+    /*position: fixed;*/ /* Cuando queremos fijo el footer en una posición */
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}

@@ -2,7 +2,7 @@
 <app-loading *ngIf="loading"></app-loading>
 
 <!-- Esto solo se va a mostrar si existe la película -->
-<div class="row" *ngIf="pelicula">
+<div class="row animated fadeIn" *ngIf="pelicula">
     <div class="col-md-6">
         <!-- Imagen -->
         <img [src]="pelicula.poster_path | poster" [alt]="pelicula.title"
