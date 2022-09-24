@@ -1,10 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from "rxjs/operators";
 import { CarteleraResponse, Movie } from '../interfaces/cartelera-response';
 import { Cast, CreditsResponse } from '../interfaces/credits-response';
 import { MovieDetails } from '../interfaces/movie-response';
+import { YoutubeResponse } from '../interfaces/youtube-resposne';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class PeliculasService {
   private carteleraPage: number = 1;
   public cargando: boolean = false; // Para sabaer cuando estamos cargando info y no volver a hacerlo
   private _historial: string[] = []; // Para ir almacenando los criterios de búsqueda
+  private baseUrlAPIYoutube: string = 'https://youtube.googleapis.com/youtube/v3/search';
 
   constructor(private http: HttpClient) { }
 
@@ -87,6 +89,25 @@ export class PeliculasService {
       map(response => response.cast.filter(c => c.order != undefined &&  c.order < 30)),
       // Si no se encuentra la pelicula por id. se retorna un areglo vacio para ek caso del cast
       catchError(error => of([]))
+    );
+  }
+
+  getTrailerPelicula(titulo: string): Observable<string> {
+   
+    const params = new HttpParams()
+        .set('part', 'snippet')
+        .set('maxResults', '5')
+        .set('q', `${titulo} trailer`)
+        .set('key', 'AIzaSyDmAE9ZCUWGPmcRAxBrbbxE4WalpAu0sMQ');
+
+    return this.http.get<YoutubeResponse>(this.baseUrlAPIYoutube, {
+      params: params
+    }).pipe(
+      // Obtenemos siempre el primer elemento de la respuesta (items) y obtenemos el id del video
+      map(response => response.items[0].id.videoId),
+
+      // Si hay algun problema retornamos un string vacio que sera emitido por el observable
+      catchError(error => of(''))
     );
   }
 

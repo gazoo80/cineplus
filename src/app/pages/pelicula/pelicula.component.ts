@@ -5,6 +5,7 @@ import { MovieDetails } from 'src/app/interfaces/movie-response';
 import { PeliculasService } from '../../services/peliculas.service';
 import { Cast } from '../../interfaces/credits-response';
 import { combineLatest } from 'rxjs';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-pelicula',
@@ -16,6 +17,7 @@ export class PeliculaComponent implements OnInit {
   public pelicula!: MovieDetails;
   public cast: Cast[] = []; 
   public loading!: boolean;
+  public trailer: string = '';
 
   constructor(private activatedRoute: ActivatedRoute,
               private peliculaService: PeliculasService,
@@ -83,6 +85,16 @@ export class PeliculaComponent implements OnInit {
       // Manejamos la respuesta del observable que emite el cast de la movie
       this.cast = cast.filter(actor => actor.profile_path != null);
 
+      if (this.pelicula.overview !== '' && this.pelicula.poster_path !== null && this.pelicula.vote_average > 3) {
+        // Obtenemos el trailer de la película desde youtube si la tuviera
+        this.peliculaService.getTrailerPelicula(this.pelicula.title.trim()).subscribe(
+          response => {
+            console.log(response);
+            this.trailer = response;
+          }
+        );
+      }
+
       this.loading = false; // Decimos que la data ya cargó
     });
 
@@ -92,6 +104,27 @@ export class PeliculaComponent implements OnInit {
     // Oara regresar a la pantalla anterior en la que haya estado el usuario (Puede haber venido
     // de la cartelera o de la búsqueda, etc.)
     this.location.back();
+  }
+
+  mostrarVideo() {
+    Swal.fire({
+      html: `
+        <h5><b>${this.pelicula.title}</b></h5>
+        <hr style="color: white;"/>
+        <iframe width="100%" 
+                height="400" 
+                src="https://www.youtube.com/embed/${this.trailer}" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+        </iframe>
+      `,
+      background: '#212529',
+      confirmButtonColor: '#bd4c5f',
+      width: '40%',
+      heightAuto: true
+    })
   }
 
 }

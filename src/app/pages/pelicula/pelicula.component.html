@@ -26,8 +26,11 @@
         </div>
         <div class="row mt-5">
             <div class="col text-white">
-                <button class="btn btn-outline-info" (click)="onRegresar()">
+                <button class="btn btn-outline-info me-3" (click)="onRegresar()">
                     Regresar
+                </button>
+                <button class="btn btn-outline-info" (click)="mostrarVideo()" *ngIf="trailer">
+                    Ver trailer &nbsp;<i class="fas fa-film fa-1x"></i>
                 </button>
             </div>
         </div>
