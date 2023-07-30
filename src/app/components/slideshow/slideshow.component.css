@@ -14,3 +14,28 @@
     position: absolute;
     width: 100%;
 }
+
+.slideshow-cartelera {
+    background-size: cover;
+    background-repeat: no-repeat
+}
+
+@media all and (max-width: 991px) {
+    .slideshow-cartelera {
+        background-size: contain;
+        background-repeat: no-repeat
+    }
+
+    .swiper {
+        width: 100%;
+        height: 400px;
+    }
+}
+
+@media all and (max-width: 767px) {
+    .movie-description {
+        bottom: 0;
+        padding: 5px 0px;
+    }
+}
+  

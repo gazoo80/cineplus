@@ -1,9 +1,10 @@
-<h5 class="mt-5 mb-3"></h5>
-<div class="list-group list-group-flush">
+
+
+<div class="flex-wrap mt-4 mb-3 d-none d-md-flex justify-content-center">
     <!-- Con el pipe async obtenemos la respuesta que emite el observable retornado
          por la propiedad GET historial()  -->
     <!-- El <a> sin href para que la pagina no recargue -->
-    <a class="btn btn-outline-success mb-1" *ngFor="let item of historial | async" (click)="buscarPelicula(item)">
+    <a class="btn btn-outline-success mb-1 me-1" *ngFor="let item of historial | async" (click)="buscarPelicula(item)">
         <!-- titlecase: Pipe para capitalizar correctamente. Ejm: One Punch -->
         {{ item | titlecase }}
     </a>

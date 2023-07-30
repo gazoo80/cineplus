@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-3 mb-5 animated fadeIn" 
+    <div class="col-sm-6 col-lg-4 col-xl-3 mb-5 animated fadeIn" 
          *ngFor="let movie of movies">
         <!-- <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt=""
              class="img-fluid poster"> -->
@@ -11,10 +11,10 @@
             <h3 class="ps-1">{{ movie.title }}</h3>
             <div class="row">
                 <div class="col-10 text-white">
-                    <star-rating [starType]="'svg'" staticColor="ok" size="medium" space="around" speed="slow" [numOfStars]="10" [showHalfStars]="true" [rating]="movie.vote_average"></star-rating>
+                    <star-rating [starType]="'svg'" staticColor="ok" space="around" speed="slow" [numOfStars]="10" [showHalfStars]="true" [rating]="movie.vote_average"></star-rating>
                 </div>
                 <div class="col-2 text-white">
-                    <h3>{{ movie. vote_average | number: '1.1-2'}}</h3>
+                    <h3>{{ movie.vote_average | number: '1.1-2'}}</h3>
                      <!-- Entero y uno o dos decimales -->
                 </div>
             </div>

@@ -109,10 +109,9 @@ export class PeliculaComponent implements OnInit {
   mostrarVideo() {
     Swal.fire({
       html: `
-        <h5><b>${this.pelicula.title}</b></h5>
+        <span class="movie-modal-title text-white-50"><b>${this.pelicula.title}</b></span>
         <hr style="color: white;"/>
-        <iframe width="100%" 
-                height="400" 
+        <iframe width="100%" class="movie-player-height"
                 src="https://www.youtube.com/embed/${this.trailer}" 
                 title="YouTube video player" 
                 frameborder="0" 
@@ -122,7 +121,8 @@ export class PeliculaComponent implements OnInit {
       `,
       background: '#212529',
       confirmButtonColor: '#bd4c5f',
-      width: '40%',
+      showConfirmButton: false,
+      width: '600px',
       heightAuto: true
     })
   }

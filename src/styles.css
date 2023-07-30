@@ -40,6 +40,31 @@ hr{
     display:block;
 }
 
+.movie-player-height {
+  height: 380px;
+}
+
+.movie-modal-title {
+  font-size: large;
+  color: white;
+}
+
+@media all and (max-width: 610px) {
+  .movie-player-height {
+    height: 300px;
+  }
+}
+
+@media all and (max-width: 440px) {
+  .movie-player-height {
+    height: 180px;
+  }
+
+  .movie-modal-title {
+    font-size: small;
+  }
+}
+
 
 /* Clases CSS para animaciones de entrada de las páginas */
 .animated {

@@ -1,11 +1,12 @@
 <app-navbar></app-navbar>
 
-<div class="d-flex">
-    <div class="border-end border-dark border-4 p-3" id="sidebar">
+<div>
+    <!-- <div class="border-end border-dark border-4 p-3 d-none d-lg-block" id="sidebar">
         <app-sidebar></app-sidebar>
-    </div>
+    </div> -->
     <div class="container mt-3">
         <div style="min-height: 80vh;"> <!-- Para que el footer aparezca en el bottom de la pantalla  -->
+            <app-sidebar></app-sidebar>
             <router-outlet></router-outlet>
         </div>
         <app-footer></app-footer>

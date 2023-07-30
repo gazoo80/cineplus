@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-sm bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" routerLink="/home"><i class="fas fa-film fa-2x"></i>&nbsp;<b style="font-size: xx-large">Películas</b></a>
+      <a class="navbar-brand" routerLink="/home"><i class="fas fa-film fa-2x"></i>&nbsp;<b style="font-size: xx-large">CinePlus</b></a>
       
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -9,7 +9,8 @@
         <div class="d-flex">
           <input #txtBuscar
                  (keyup.enter)="buscarPelicula(txtBuscar.value)"
-                 class="form-control me-2" 
+                 class="form-control me-2 bg-dark text-white-50" 
+                 style="border: 1px solid #bd4c5f;"
                  type="search" 
                  placeholder="Buscar películas" 
                  aria-label="Search">

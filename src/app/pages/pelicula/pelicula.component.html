@@ -2,15 +2,15 @@
 <app-loading *ngIf="loading"></app-loading>
 
 <!-- Esto solo se va a mostrar si existe la película -->
-<div class="row animated fadeIn" *ngIf="pelicula">
+<div class="row animated fadeIn mt-4" *ngIf="pelicula">
     <div class="col-md-6">
         <!-- Imagen -->
         <img [src]="pelicula.poster_path | poster" [alt]="pelicula.title"
              class="img-thumbnail">
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6 mt-4 mt-md-0">
         <!-- Detalle -->
-        <h3 class="ps-1">{{ pelicula.title }}</h3>
+        <h3 class="ps-1 ">{{ pelicula.title }}</h3>
         <div class="row">
             <div class="col text-white">
                 <star-rating [starType]="'svg'" staticColor="ok" size="medium" space="around" speed="slow" [numOfStars]="10" [showHalfStars]="true" [rating]="pelicula.vote_average"></star-rating>
@@ -20,16 +20,16 @@
             </div>
         </div>
         <div class="row mt-2">
-            <div class="col text-white">
+            <div class="col text-white ps-3">
                 {{ pelicula.overview }}
             </div>
         </div>
-        <div class="row mt-5">
+        <div class="row mt-5 ps-1">
             <div class="col text-white">
-                <button class="btn btn-outline-info me-3" (click)="onRegresar()">
+                <button class="btn btn-outline-warning me-3" (click)="onRegresar()">
                     Regresar
                 </button>
-                <button class="btn btn-outline-info" (click)="mostrarVideo()" *ngIf="trailer">
+                <button class="btn btn-outline-warning" (click)="mostrarVideo()" *ngIf="trailer">
                     Ver trailer &nbsp;<i class="fas fa-film fa-1x"></i>
                 </button>
             </div>
@@ -44,7 +44,7 @@
 </div> -->
 
 <div class="row mt-4" *ngIf="cast.length > 0">
-    <div class="col">
+    <div class="col-12 d-none d-sm-block">
         <app-cast-slideshow [cast]="cast"></app-cast-slideshow>
     </div>
 </div>
